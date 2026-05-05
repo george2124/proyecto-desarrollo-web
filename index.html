@@ -22,8 +22,6 @@
             <li><a href="contacto.html">Contacto</a></li>
         </ul>
     </nav>
-
-    <button id="modoBtn">🌙</button>
 </header>
 
 <!-- HERO -->
@@ -37,12 +35,7 @@
             src="https://www.youtube.com/embed/Np7NBOVUtgg?si=yvi4ASnDcCW7kexX" 
             title="YouTube video player" 
             frameborder="0" 
-            allow="accelerometer; 
-            autoplay; clipboard-write; 
-            encrypted-media; gyroscope; 
-            picture-in-picture; web-
-            share" referrerpolicy="strict-
-            origin-when-cross-origin" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
             allowfullscreen>
         </iframe>
     </div>
@@ -77,27 +70,38 @@
 
 <!-- CONTADOR -->
 <section class="contador">
-    <span id="contador">0</span>
     <p>Viajeros felices</p>
 </section>
 
 <!-- TESTIMONIOS -->
 <section class="carrusel">
-    <div>"Increíble viaje"</div>
-    <div>"Todo perfecto"</div>
-    <div>"Volvería otra vez"</div>
+    <div class="track">
+        <div>"Increíble viaje"</div>
+        <div>"Todo perfecto"</div>
+        <div>"Volvería otra vez"</div>
+        <div>"Increíble viaje"</div>
+        <div>"Todo perfecto"</div>
+        <div>"Volvería otra vez"</div>
+    </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-    <form>
-        <input type="email" placeholder="Tu email" required>
-        <button>Suscribirse</button>
-    </form>
+    <div class="footer-content">
+        <div class="newsletter">
+            <h4>Suscríbete</h4>
+            <p>Recibe informacion y las últimas promociones y descuento en tu correo</p>
+            
+            <form class="subscribe-form">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <button type="submit">Suscribirse</button>
+            </form>
+        </div>
+    </div>
 
     <iframe 
-    src="https://maps.google.com/maps?q=argentina&t=&z=5&output=embed"
-    loading="lazy">
+        src="https://maps.google.com/maps?q=argentina&t=&z=5&output=embed"
+        loading="lazy">
     </iframe>
 
     <p>© 2026 Turismo Argentina</p>

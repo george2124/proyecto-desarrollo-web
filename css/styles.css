@@ -22,9 +22,13 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--primario);
+    background: #222;
     color: white;
-    padding: 10px;
+    padding: 15px 30px;
+}
+header h1 {
+    font-size: 1.5rem;
+    margin: 0;
 }
 
 /* NAV */
@@ -46,8 +50,18 @@ a:focus {
 /* HERO */
 .hero {
     height: 60vh;
-    background: url('../img/bg.jpg') center/cover;
     position: relative;
+    overflow: hidden;
+}
+.hero iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* proporción 16:9 */
+    min-height: 100%;
+    min-width: 177.77vh;
+    transform: translate(-50%, -50%);
 }
 
 .overlay {
@@ -69,7 +83,6 @@ a:focus {
     padding: 20px;
 }
 
-
 .card {
     background: white;
     padding: 20px;
@@ -86,33 +99,279 @@ a:focus {
     text-align: center;
     font-size: 2rem;
 }
+/* Definimos una variable que el navegador pueda entender como número */
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.contador {
+  font-size: 5rem;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-align: center;
+  padding: 40px 0; /* Espacio arriba y abajo */
+  margin-bottom: 20px; /* Evita que el carrusel lo pise */
+  animation: cuenta 5s linear forwards;
+  counter-reset: variable var(--num);
+}
+
+.contador::after {
+  content: counter(variable);
+}
+
+/* Definimos los Keyframes para animar el número */
+@keyframes cuenta {
+  from {
+    --num: 0;
+  }
+  to {
+    --num: 500;
+  }
+}
 
 /* CARRUSEL */
+/* CARRUSEL REPARADO */
 .carrusel {
-    display: flex;
+    width: 100%;
     overflow: hidden;
+    background: var(--primario);
+    color: white;
+    padding: 20px 0;
+    white-space: nowrap;
 }
 
-.carrusel div {
-    min-width: 100%;
-    animation: slide 9s infinite;
+.track {
+    display: flex;
+    width: max-content; /* Ajuste automático al contenido */
+    /* CAMBIO AQUÍ: 'infinite' en minúscula y corregido */
+    animation: scroll 20s linear infinite; 
 }
 
-@keyframes slide {
-    0% {transform: translateX(0);}
-    33% {transform: translateX(-100%);}
-    66% {transform: translateX(-200%);}
+.track div {
+    padding: 0 100px; /* Más espacio para que no se amontonen */
+    font-size: 1.2rem;
+    font-weight: bold;
+    flex-shrink: 0;
+    display: inline-block;
 }
 
-/* FOOTER */
-footer {
-    padding: 20px;
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Se mueve exactamente la mitad porque duplicamos los mensajes */
+        transform: translateX(-50%); 
+    }
+}
+
+.carrusel:hover .track {
+    animation-play-state: paused;
+}
+
+/* DISEÑO DE LAS GRILLA DE AGENCIAS */
+.contenedor-agencias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 40px;
+    justify-content: center;
+}
+
+/* EFECTO FLIP */
+.flip {
+    background-color: transparent;
+    width: 250px;
+    height: 300px;
+    perspective: 1000px; /* Efecto de profundidad */
+}
+
+.flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+.flip:hover .flip-inner {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.front {
+    background-color: #fff;
+    color: #222;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.back {
+    background-color: var(--primario);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+/* SISTEMA DE RATING (ESTRELLAS ANIMADAS) */
+.rating {
+    display: flex;
+    flex-direction: row-reverse; /* Clave para que funcionen los selectores hermanos */
+    font-size: 2rem;
+}
+
+.rating input { display: none; } /* Escondemos los radios */
+
+.rating label {
+    color: #444;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+
+/* Hover e iluminar hacia atrás */
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label {
+    color: #ffcc00;
+}
+
+.rating label:active {
+    transform: scale(1.3);
+}
+
+/* DISEÑO BASE DE LA TABLA */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    background-color: white;
+    color: #333;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #ddd;
     text-align: center;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-    }
+th {
+    background-color: var(--primario);
+    color: white;
+}
+
+/* EFECTO DE RESALTADO AL PASAR EL CURSOR (HOVER) */
+tbody tr:hover {
+    background-color: #f1f7ff; /* Un azul muy clarito */
+    transform: scale(1.01);    /* Un pequeño efecto de aumento */
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* TOOLTIP PERSONALIZADO */
+.con-tooltip {
+    position: relative;
+    cursor: help;
+    color: var(--primario);
+    font-weight: bold;
+}
+
+/* El cuadro negro del mensaje */
+.con-tooltip::after {
+    content: attr(data-tooltip); /* Toma el texto del HTML */
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10;
+}
+
+/* La flechita del tooltip */
+.con-tooltip::before {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: #333;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* MOSTRAR AL HACER HOVER */
+.con-tooltip:hover::after,
+.con-tooltip:hover::before {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+
+/* ACHICAR EL FOOTER */
+footer {
+    background-color: #222;
+    color: white;
+    padding: 20px; /* Reducido de 40px a 20px */
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.newsletter h4 {
+    font-size: 1.2rem; /* Título más pequeño */
+    margin-bottom: 5px;
+}
+
+.newsletter p {
+    font-size: 0.9rem; /* Texto más pequeño */
+    margin-bottom: 15px;
+}
+
+.subscribe-form {
+    display: flex;
+    justify-content: center;
+    
+    max-width: 400px;
+    margin: 0 auto; /* Formulario más angosto */
+}
+
+.subscribe-form input[type="email"], 
+.subscribe-form button {
+    padding: 8px 12px; /* Padding más compacto */
+}
+
+.footer-bottom {
+    margin-top: 15px;
+    padding-top: 10px;
+    font-size: 0.75rem;
+}
+.iframe {
+    padding: inherit;
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Precios</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -19,21 +19,68 @@
             <li><a href="contacto.html">Contacto</a></li>
         </ul>
     </nav>
-
-    <button id="modoBtn">🌙</button>
 </header>
+<h1>Precios</h1>
     <table>
-<tr>
-<th>Destino</th>
-<th>Precio</th>
-</tr>
+        <thead>
+            <tr>
+                <th>Destino</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+       
+        <tbody>
+            <tr>
+                <td>Bariloche</td>
+                <td class="con-tooltip" data-tooltip="Incluye hotel y traslados">$150000</td>
+            </tr>
 
-<tr>
-<td>Bariloche</td>
-<td title="Incluye hotel">$150000</td>
-</tr>
+            <tr>
+                <td>Mendoza</td>
+                <td class="con-tooltip" data-tooltip="Incluye bodega y cena">$100000</td>
+            </tr>
 
-</table>
+            <tr>
+                <td>Iguazú</td>
+                <td class="con-tooltip" data-tooltip="Incluye acceso al parque">$250000</td>
+            </tr>
+              <tr>
+                <td>Cordoba</td>
+                <td class="con-tooltip" data-tooltip="Incluye hotel y viaje por las cierras">$200000</td>
+            </tr>
+              <tr>
+                <td>Jujuy</td>
+                <td class="con-tooltip" data-tooltip="Incluye hotel, comida y visita a los cerros de 7 colores">$220000</td>
+            </tr>
+              <tr>
+                <td>Salta</td>
+                <td class="con-tooltip" data-tooltip="Incluye hotel, comida y visita al cerro san bernardo">$210000</td>
+            </tr>
+        </tbody>
+    </table>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="newsletter">
+            <h4>Suscríbete</h4>
+            <p>Recibe informacion y las últimas promociones y descuento en tu correo</p>
+            
+            <form class="subscribe-form">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <button type="submit">Suscribirse</button>
+            </form>
+        </div>
+    </div>
+
+    <iframe 
+        src="https://maps.google.com/maps?q=argentina&t=&z=5&output=embed"
+        loading="lazy">
+    </iframe>
+
+    <p>© 2026 Turismo Argentina</p>
+</footer>
+
 </body>
 </html>
 
