@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+<header>
+    <h1>Turismo Argentina</h1>
+
+    <nav aria-label="Menú principal">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="destinos.html">Destinos</a></li>
+            <li><a href="agencias.html">Agencias</a></li>
+            <li><a href="precios.html">Precios</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <button id="modoBtn">🌙</button>
+</header>
+<h1>Destinos</h1>
+
+<!-- FILTRO -->
+<input type="radio" name="filtro" id="todos" checked>
+<label for="todos">Todos</label>
+
+<input type="radio" name="filtro" id="playa">
+<label for="playa">Playa</label>
+
+<input type="radio" name="filtro" id="montaña">
+<label for="montaña">Montaña</label>
+
+<section class="grid">
+    <div class="card playa">Mar del Plata</div>
+    <div class="card montaña">Bariloche</div>
+    <div class="card montaña">Ushuaia</div>
+</section>
+
+</body>
+</html>
