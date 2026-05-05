@@ -19,23 +19,76 @@
         </ul>
     </nav>
 </header>
-<h1>Destinos</h1>
+<main class="revista-container">
+    <h1>Destinos Destacados</h1>
+        <input type="radio" name="filtro" id="todos" checked>
+        <input type="radio" name="filtro" id="playa">
+        <input type="radio" name="filtro" id="montaña">
+        <input type="radio" name="filtro" id="cerros">
 
-<!-- FILTRO -->
-<input type="radio" name="filtro" id="todos" checked>
-<label for="todos">Todos</label>
+        <!-- SISTEMA DE FILTRADO (Tags) -->
+    <nav class="filtros">
+       
+        <label for="todos">📰 Todos</label>
+        <label for="playa">🏖️ Playa</label>
+        <label for="montaña">🏔️ Montaña</label>
+        <label for="cerros">⛰️ Cerros</label>
+    </nav>
 
-<input type="radio" name="filtro" id="playa">
-<label for="playa">Playa</label>
+    <!-- GRID ESTILO NEWSPAPER -->
+    <section class="revista-grid">
+        <article class="nota card-playa">
+            <span class="tag">Playa</span>
+            <h2>Mar del Plata</h2>
+            <p>La ciudad feliz te espera con sus playas y teatros...</p>
+        </article>
 
-<input type="radio" name="filtro" id="montaña">
-<label for="montaña">Montaña</label>
+         <article class="nota card-playa">
+            <span class="tag">Playa</span>
+            <h2>Pinamar</h2>
+            <p>La ciudad mas nocturna con bellas vistas, sus playas y teatros...</p>
+        </article>
 
-<section class="grid">
-    <div class="card playa">Mar del Plata</div>
-    <div class="card montaña">Bariloche</div>
-    <div class="card montaña">Ushuaia</div>
-</section>
+        <article class="nota card-montaña">
+            <span class="tag">Montaña</span>
+            <h2>Bariloche</h2>
+            <p>Chocolate, nieve y los mejores lagos del sur...</p>
+        </article>
+
+        <article class="nota card-montaña">
+            <span class="tag">Montaña</span>
+            <h2>Ushuaia</h2>
+            <p>El fin del mundo ofrece vistas inigualables de la cordillera...</p>
+        </article>
+
+<!-- Agrega estos artículos dentro de <section class="revista-grid"> -->
+        <article class="nota card-cerros">
+            <span class="tag">Cerros</span>
+            <h2>Cerro Siete Colores</h2>
+            <p>Una maravilla natural en Purmamarca que deslumbra con sus capas de colores únicos.</p>
+        </article>
+
+        <article class="nota card-cerros">
+            <span class="tag">Cerros</span>
+            <h2>Cerro San Bernardo</h2>
+            <p>El centro más importante de Salta, con vistas increíbles todo el año.</p>
+        </article>
+
+    </section>
+
+    <!-- SECCIÓN DE COMENTARIOS -->
+    <section class="comentarios">
+        <h3>Comentarios de Viajeros</h3>
+        <div class="comentario">
+            <div class="avatar"></div>
+            <div class="texto-comentario">
+                <strong>Juan Pérez:</strong>
+                <p>¡Increíble la arquitectura de la página!</p>
+            </div>
+        </div>
+    </section>
+</main>
+
 
 <!-- FOOTER -->
 <footer>

@@ -332,6 +332,267 @@ tbody tr:hover {
     opacity: 1;
 }
 
+/* DISEÑO RESPONSIVO (FLEXBOX/GRID) */
+.contacto-container {
+    display: grid;
+    place-items: center;
+    min-height: 70vh;
+    padding: 20px;
+}
+body h1 {
+    text-align: center;
+}
+.formulario-avanzado {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    max-width: 400px;
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* VALIDACIÓN EN TIEMPO REAL */
+.grupo-input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.grupo-input input {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Estado Válido */
+.grupo-input input:focus:valid {
+    border-color: #2ecc71;
+}
+
+/* Estado Inválido (cuando el usuario escribe y no cumple el formato) */
+.grupo-input input:focus:invalid {
+    border-color: #e74c3c;
+}
+
+/* Mostrar mensaje de error solo si es inválido y no está vacío */
+.error {
+    font-size: 0.75rem;
+    color: #e74c3c;
+    display: none;
+    margin-top: 5px;
+}
+
+.grupo-input input:focus:invalid ~ .error {
+    display: block;
+}
+
+/* EFECTO DE CARGA (SPINNER) */
+.btn-enviar {
+    position: relative;
+    padding: 12px;
+    background: var(--primario);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none; /* Se oculta por defecto */
+    margin: 0 auto;
+}
+
+/* Simulación de carga al hacer click */
+.btn-enviar:active .texto-btn { display: none; }
+.btn-enviar:active .spinner { display: block; }
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* MODAL DE CONFIRMACIÓN (CSS ONLY) */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+    z-index: 1000;
+}
+
+/* Se activa cuando la URL termina en #modal-exito */
+.modal:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-contenido {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    transform: scale(0.8);
+    transition: 0.4s;
+}
+
+.modal:target .modal-contenido {
+    transform: scale(1);
+}
+
+.btn-cerrar {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 20px;
+    background: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* 1. DISEÑO NEWSPAPER (CSS GRID) */
+.revista-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Artículo principal que ocupa más espacio (estilo revista) */
+.nota:first-child {
+    grid-column: span 2;
+    border-right: 2px solid #eee;
+    padding-right: 20px;
+}
+
+.nota {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+/* 2. FILTRADO SOLO CON CSS */
+/* Escondemos las notas por defecto si el filtro no coincide */
+/* 1. Escondemos los radio buttons originales */
+
+
+/* 2. Lógica de Filtrado: 
+   Cuando se marca un radio, buscamos a su hermano .revista-grid 
+   y ocultamos las clases que NO corresponden */
+
+/* Escondemos los inputs de radio para que no se vean los circulitos */
+input[name="filtro"] {
+    display: none;
+}
+
+/* Lógica de filtrado: cuando un radio específico está marcado, 
+   buscamos el hermano 'revista-grid' y ocultamos las clases que NO corresponden */
+
+#playa:checked ~ .revista-grid .card-montaña,
+#playa:checked ~ .revista-grid .card-cerros {
+    display: none;
+}
+
+#montaña:checked ~ .revista-grid .card-playa,
+#montaña:checked ~ .revista-grid .card-cerros {
+    display: none;
+}
+
+#cerros:checked ~ .revista-grid .card-playa,
+#cerros:checked ~ .revista-grid .card-montaña {
+    display: none;
+}
+
+/* Para resaltar el label seleccionado */
+#todos:checked ~ .filtros label[for="todos"],
+#playa:checked ~ .filtros label[for="playa"],
+#montaña:checked ~ .filtros label[for="montaña"],
+#cerros:checked ~ .filtros label[for="cerros"] {
+    background: var(--primario);
+    color: white;
+}
+
+
+
+/* Estilo de los labels como botones de categoría */
+.filtros { text-align: center; margin-bottom: 30px; }
+.filtros label {
+    padding: 8px 20px;
+    background: #eee;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 5px;
+    display: inline-block;
+}
+
+.filtros input:checked + label {
+    background: var(--primario);
+    color: white;
+}
+
+.filtros input { display: none; }
+
+/* 3. SCROLL REVEAL (CSS Puro Moderno) */
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(50px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.nota {
+    /* Esta línea hace que la animación se dispare al hacer scroll */
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+}
+
+/* 4. AVATARES CON PSEUDOELEMENTOS */
+.avatar {
+    width: 50px;
+    height: 50px;
+    background: #0077cc;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dibujamos un "monigote" dentro del círculo con pseudoelementos */
+.avatar::before { /* Cabeza */
+    content: "";
+    position: absolute;
+    top: 10px; left: 50%;
+    width: 15px; height: 15px;
+    background: white;
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+.avatar::after { /* Cuerpo */
+    content: "";
+    position: absolute;
+    bottom: -5px; left: 50%;
+    width: 30px; height: 25px;
+    background: white;
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+.comentario { display: flex; gap: 15px; align-items: center; margin-top: 20px; }
+
+
 
 
 
@@ -372,6 +633,12 @@ footer {
     padding-top: 10px;
     font-size: 0.75rem;
 }
-.iframe {
-    padding: inherit;
+footer iframe {
+    margin-top: 20px; /* Espacio extra arriba del mapa */
+    margin-bottom: 20px; /* Espacio extra abajo del mapa */
+    border: 0;
+    border-radius: 8px; /* Opcional: le da un toque más moderno al mapa */
+    width: 100%;
+    max-width: 500px; /* Evita que el mapa sea gigante */
+    height: 200px;
 }

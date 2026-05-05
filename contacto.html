@@ -19,14 +19,38 @@
                 </ul>
         </nav>
     </header>
-    <h1>Contactos</h1>
-<form>
-    <input type="text" required placeholder="Nombre">
-    <input type="email" required placeholder="Email">
-    <button>Enviar</button>
-</form>
+<main class="contacto-container">
+    <h1>Contacto</h1>
+    
+    <!-- El formulario apunta a un ID para activar el modal (simulación) -->
+    <form class="formulario-avanzado" action="#modal-exito">
+        <div class="grupo-input">
+            <input type="text" id="nombre" required placeholder=" ">
+            <label for="nombre">Nombre</label>
+            <span class="error">El nombre es obligatorio</span>
+        </div>
 
-<div class="spinner"></div>
+        <div class="grupo-input">
+            <input type="email" id="email" required placeholder=" ">
+            <label for="email">Email</label>
+            <span class="error">Ingresa un email válido</span>
+        </div>
+
+        <button type="submit" class="btn-enviar">
+            <span class="texto-btn">Enviar</span>
+            <div class="spinner"></div>
+        </button>
+    </form>
+</main>
+
+<!-- Modal de Confirmación -->
+<div id="modal-exito" class="modal">
+    <div class="modal-contenido">
+        <h2>¡Envío Exitoso!</h2>
+        <p>Gracias por contactarnos, te responderemos pronto.</p>
+        <a href="#" class="btn-cerrar">Cerrar</a>
+    </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
