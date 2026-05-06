@@ -16,7 +16,9 @@ body.dark {
     --fondo: #121212;
     --texto: #fff;
 }
-
+body h1 {
+    text-align: center;
+}
 /* HEADER */
 header {
     display: flex;
@@ -339,9 +341,7 @@ tbody tr:hover {
     min-height: 70vh;
     padding: 20px;
 }
-body h1 {
-    text-align: center;
-}
+
 .formulario-avanzado {
     display: flex;
     flex-direction: column;
